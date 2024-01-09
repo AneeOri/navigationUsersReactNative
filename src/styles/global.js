@@ -12,5 +12,6 @@ export const globalStyles = StyleSheet.create({
         fontSize:32,
         fontWeight:'bold',
         color:Colors.secondary,
+        alignItems:'center',
     },
 });

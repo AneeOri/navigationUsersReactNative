@@ -1,9 +1,10 @@
 import { Text, View } from "react-native";
+import { globalStyles } from "../styles/global";
 
 export default function Profile(){
     return(
-        <View>
-            <Text>Profile</Text>
+        <View style={globalStyles.screenContainer}>
+            <Text style={globalStyles.title}>Profile</Text>
         </View>
     )
 }

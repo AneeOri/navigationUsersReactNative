@@ -17,7 +17,8 @@ const myConfig = {
 };
 
 export default function MyStack(){
-    /** the name atribute must be unique */
+    /** The name atribute must be unique */
+    /** Button Tab inside the stack */
     return(
        <HomeStack.Navigator
         initialRouteName="Home"

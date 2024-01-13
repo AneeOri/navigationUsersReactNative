@@ -5,6 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Colors } from "../constants/colors";
 import { Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import MyTopTab from "./MyTopTab";
 
 const MyTab = createBottomTabNavigator();
 
@@ -12,15 +13,15 @@ export default function MyButtonTab() {
   const navigation = useNavigation();
     return(
         <MyTab.Navigator
-        initialRouteName="Home"
+        initialRouteName="TopTab"
          screenOptions={{
             headerTitleAlign:'center',
             tabBarInactiveTintColor: Colors.secondary,
          }}
         >
             <MyTab.Screen 
-              name="Home" 
-              component={Home} 
+              name="TopTab" 
+              component={MyTopTab} 
               options={{
                 headerLeft: () => (
                 <Pressable onPress={() => navigation.openDrawer()}>

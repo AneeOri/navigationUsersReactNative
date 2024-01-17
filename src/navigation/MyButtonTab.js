@@ -27,6 +27,10 @@ export default function MyButtonTab() {
                 <Pressable onPress={() => navigation.openDrawer()}>
                    <AntDesign name="menuunfold" style={{marginLeft:15}} size={31} color={Colors.secondary} />
                 </Pressable>),
+                headerRight: () => (
+                  <Pressable onPress={() => navigation.openDrawer()}>
+                     <AntDesign name="setting" style={{marginRight:15}} size={31} color={Colors.secondary} />
+                  </Pressable>),
                 tabBarIcon: ({color}) => <AntDesign name="home" size={31} color={color} />
               }}
             />

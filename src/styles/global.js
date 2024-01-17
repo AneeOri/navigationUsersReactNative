@@ -14,4 +14,8 @@ export const globalStyles = StyleSheet.create({
         color:Colors.secondary,
         alignItems:'center',
     },
+    simpleContainer: {
+        flex: 1,
+        backgroundColor: Colors.ligth,
+      },
 });

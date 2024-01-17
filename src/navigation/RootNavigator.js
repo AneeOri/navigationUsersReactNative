@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { restoreToken } from "../features/auth/auth";
 import { useEffect } from "react";
 import Splash from "../screens/Splash";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RootNavigator() {  /**Render the root navigator in App */
    const {userToken, isLoading} = useSelector(state => state.auth);

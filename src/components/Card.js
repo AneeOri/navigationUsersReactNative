@@ -15,12 +15,9 @@ export default function Card(){
     return (
         <View style={styles.card}>
           <View style={styles.row}>
-            <Image source={{ uri: user.photoUrl }} style={styles.img} />
+            <Image source={require('../../assets/Images/1.png')} style={styles.img} />
           </View>
-          <Text style={styles.name}>{user.id}</Text>
-          <Text style={styles.name}>{user.name}</Text>
           <Text style={styles.name}>{userToken}</Text>
-          <Text style={styles.name}>{user.createdAt}</Text>
           <MyButton title={'Add Friend'} onPress={doSomething} />
         </View>
       );

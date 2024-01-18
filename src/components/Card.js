@@ -16,8 +16,8 @@ export default function Card(){
         <View style={styles.card}>
           <View style={styles.row}>
             <Image source={require('../../assets/Images/1.png')} style={styles.img} />
-          </View>
-          <Text style={styles.name}>{userToken}</Text>
+            <Text style={styles.name}>{userToken}</Text>
+        </View>  
           <MyButton title={'Add Friend'} onPress={doSomething} />
         </View>
       );
@@ -30,7 +30,7 @@ export default function Card(){
         padding: 20,
         margin: 10,
         borderRadius: 10,
-        borderWidth: 0.5,
+        borderWidth: 0.9,
         borderColor: Colors.primary,
       },
       img: {
@@ -43,9 +43,9 @@ export default function Card(){
         alignItems: 'center',
       },
       name: {
-        fontSize: 14,
+        fontSize: 24,
         fontWeight: 'bold',
-        marginLeft: 10,
+        marginLeft: 15,
         flexShrink: 1,
       },
     });

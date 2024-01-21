@@ -10,14 +10,30 @@ export default function Contacts(){
     const navigation = useNavigation();
     const [contacts, setContacts] = useState(initialContacts);
 
+    function handleAddContact(name){
+       setContacts([...contacts, {id: nextId++ , name}]);
+    }
+
+    function handleDeleteContact(id){
+       setContacts(contacts.filter(c => c.id !== id));
+    }
+
+    function handleChangeContact(contact){
+       setContacts(contacts.map(c => (c.id === contact.id ? contact : c))); 
+    }
+
     return(
      <View style={globalStyles.simpleContainer}>
-      <AddContact/>
-      <ContactList contacts={contacts}/>
+      <AddContact onAddContact = {handleAddContact}/>
+      <ContactList contacts={contacts}
+         onChangeContact={handleChangeContact}
+         onDeleteContact={handleDeleteContact}
+      />
      </View> 
     );
 }
 
+let nextId = 3;
 const initialContacts = [
     {id:0, name: 'Tato Lee'},
     {id:1, name: 'Hisa Hio'},

@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { ScrollView, View,Text } from "react-native";
 
 export default function ContactList({contacts,}){
     return(

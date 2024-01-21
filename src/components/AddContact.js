@@ -3,15 +3,20 @@ import { View, Button, StyleSheet } from "react-native";
 import MyInput from './MyInput';
 import { Colors } from "../constants/colors";
 
-export default function AddContact(){
+export default function AddContact({onAddContact}){
     const [name, setName] = useState('');
+
+    function handleAdd(){
+        onAddContact(name);
+        setName('');
+    }
     
     return(
         <View style={styles.container}>
           <View style={{width:'80%'}}>
-            <MyInput/>
+            <MyInput label={'Add Contact'} value={name} onChangeText={setName}/>
           </View>
-          <Button title="Add" color={Colors.primary}/>
+          <Button title="Add" color={Colors.primary} onPress={handleAdd}/>
         </View>
     );
 }

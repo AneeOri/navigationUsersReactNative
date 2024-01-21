@@ -1,22 +1,93 @@
-import { ScrollView, View,Text } from "react-native";
+import { useMemo, useState } from "react";
+import { ScrollView, View,Text, StyleSheet, Image, Button, Pressable } from "react-native";
+import MyInput from "./MyInput";
+import {getRandomPhoto} from '../utils/randomPhotos'
+import { Colors } from "../constants/colors";
+import { AntDesign } from '@expo/vector-icons';
 
-export default function ContactList({contacts,}){
+export default function ContactList({contacts,onChangeContact,onDeleteContact}){
     return(
-        <ScrollView>
+        <ScrollView >
             {contacts.map((contact, index) => (
                 <Contact
                  key={index}
-                 contact={contact.name}
+                 contact={contact}
+                 onChange={onChangeContact}
+                 onDelete={onDeleteContact}
                 />
             ))}
         </ScrollView>
     );
 }
 
-function Contact({contact}){
+function Contact({contact, onChange, onDelete}){
+    const [isEditing, setIsEditing] = useState(false);
+    let contactContainer;
+    const memoPhoto = useMemo(()=>getRandomPhoto(),[]);
+    if(isEditing){
+        contactContainer = (
+            <View>
+                <MyInput value={contact.name}
+                onChangeText={text => onChange({...contact, name: text})}/>
+            </View>
+        );
+    }else{
+        contactContainer = (
+            <View>
+                <Text style={styles.name}>{contact.name}</Text>
+            </View>
+        );
+    }
     return(
-         <View>
-            <Text>{contact}</Text>
-         </View>
+        <View style={styles.contactContainer}>
+          <View style={styles.row}>
+            <Image source={memoPhoto} style={styles.image}/>
+             {contactContainer}
+          </View>
+          <View>
+            {isEditing ? (
+                <Button title="Save" onPress={() => setIsEditing(false)}/>
+            ):(
+               <View style={styles.row}>
+                <Pressable  onPress={() => setIsEditing(true)} style={styles.pressable}>
+                   <AntDesign name="edit" size={24} color={Colors.secondary}  /> 
+                </Pressable>
+                <Pressable onPress={() => onDelete(contact.id)} style={styles.pressable}>
+                   <AntDesign name="delete" size={24} color={Colors.secondary} /> 
+                </Pressable>
+                </View>
+    
+            )}
+          </View>
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    contactContainer:{
+      width:'100%',
+      flexDirection:'row',
+      padding:10,
+      borderColor:Colors.gray,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      paddingRight:100,
+    },
+    image:{
+       width:50,
+       height:50,
+       borderRadius:25,
+       marginRight:10,
+    },
+    row:{
+        flexDirection:'row',
+        width:'100%',
+    },
+    name:{
+        fontSize:17,
+        fontWeight:'bold',
+        color:Colors.dark,
+    },
+    pressable:{
+        padding:10,
+    }
+});

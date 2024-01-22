@@ -1,3 +1,4 @@
+/**Using Reducer */
 import { View, Text, Button } from "react-native";
 import { globalStyles } from "../styles/global";
 import AddContact from "../components/AddContact";

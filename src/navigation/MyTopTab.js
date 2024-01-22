@@ -1,6 +1,5 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Home from "../screens/Home";
-import Contacts from "../screens/Contacts";
 import ContactsRedu from "../screens/ContactsRedu";
 import { Colors } from "../constants/colors";
 

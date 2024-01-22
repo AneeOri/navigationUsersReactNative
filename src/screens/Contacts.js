@@ -38,7 +38,7 @@ const initialContacts = [
     {id:0, name: 'Tato Lee'},
     {id:1, name: 'Hisa Hio'},
     {id:2, name: 'Kanani Lokelani'},
-]
+];
 //Before
 /*export default function Contacts(){
     const navigation = useNavigation();

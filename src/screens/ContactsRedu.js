@@ -14,11 +14,11 @@ export default function ContactsRedu(){
         dispatch({type: 'ADD' ,id: nextId++, name});
     }
 
-    function handleDeleteContact(){
+    function handleDeleteContact(id){
         dispatch({type:'DELETE' , id});
     }
 
-    function handleChangeContact(){
+    function handleChangeContact(contact){
         dispatch({type:'CHANGE', contact});
     }
 
@@ -38,4 +38,4 @@ const initialContacts = [
     {id:0, name: 'Tato Lee'},
     {id:1, name: 'Hisa Hio'},
     {id:2, name: 'Kanani Lokelani'},
-]
+];

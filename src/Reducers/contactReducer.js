@@ -1,5 +1,5 @@
 
-export function contactReducer(contacts, action){
+export function contactReducer(contacts, action){ //reducer is an independent pure function doesn´t depend on the component   
     switch(action.type){
         case 'ADD':{
              return [...contacts, {id:action.id, name: action.name}];

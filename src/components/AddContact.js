@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { View, Button, StyleSheet } from "react-native";
 import MyInput from './MyInput';
 import { Colors } from "../constants/colors";
+import {contactsStore} from '../context/contactsContext';
 
-export default function AddContact({onAddContact}){
+export default function AddContact(){
+    const {handleAddContact} = useContext(contactsStore);
     const [name, setName] = useState('');
 
     function handleAdd(){
-        onAddContact(name);
+        handleAddContact(name);
         setName('');
     }
     

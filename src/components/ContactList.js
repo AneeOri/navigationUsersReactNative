@@ -5,9 +5,11 @@ import {getRandomPhoto} from '../utils/randomPhotos'
 import { Colors } from "../constants/colors";
 import { AntDesign } from '@expo/vector-icons';
 import { contactsStore } from "../context/contactsContext";
+import { globalStyles } from "../styles/global";
 
 export default function ContactList(){
     const {contacts} = useContext(contactsStore);
+    if(contacts.length === 0 ) return <Text style={globalStyles.title}>  You don't have any contacts!</Text>
     return(
         <ScrollView >
             {contacts.map((contact, index) => (

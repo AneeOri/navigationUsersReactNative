@@ -1,26 +1,27 @@
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { ScrollView, View,Text, StyleSheet, Image, Button, Pressable } from "react-native";
 import MyInput from "./MyInput";
 import {getRandomPhoto} from '../utils/randomPhotos'
 import { Colors } from "../constants/colors";
 import { AntDesign } from '@expo/vector-icons';
+import { contactsStore } from "../context/contactsContext";
 
-export default function ContactList({contacts,onChangeContact,onDeleteContact}){
+export default function ContactList(){
+    const {contacts} = useContext(contactsStore);
     return(
         <ScrollView >
             {contacts.map((contact, index) => (
                 <Contact
                  key={index}
                  contact={contact}
-                 onChange={onChangeContact}
-                 onDelete={onDeleteContact}
                 />
             ))}
         </ScrollView>
     );
 }
 
-function Contact({contact, onChange, onDelete}){
+function Contact({contact}){
+    const {handleChangeContact, handleDeleteContact} = useContext(contactsStore);
     const [isEditing, setIsEditing] = useState(false);
     let contactContainer;
     const memoPhoto = useMemo(()=>getRandomPhoto(),[]);
@@ -28,7 +29,7 @@ function Contact({contact, onChange, onDelete}){
         contactContainer = (
             <View>
                 <MyInput value={contact.name}
-                onChangeText={text => onChange({...contact, name: text})}/>
+                onChangeText={text => handleChangeContact({...contact, name: text})}/>
             </View>
         );
     }else{
@@ -52,7 +53,7 @@ function Contact({contact, onChange, onDelete}){
                 <Pressable  onPress={() => setIsEditing(true)} style={styles.pressable}>
                    <AntDesign name="edit" size={24} color={Colors.secondary}  /> 
                 </Pressable>
-                <Pressable onPress={() => onDelete(contact.id)} style={styles.pressable}>
+                <Pressable onPress={() => handleDeleteContact(contact.id)} style={styles.pressable}>
                    <AntDesign name="delete" size={24} color={Colors.secondary} /> 
                 </Pressable>
                 </View>

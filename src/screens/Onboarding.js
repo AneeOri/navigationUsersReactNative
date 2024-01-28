@@ -4,8 +4,8 @@ import { Colors } from "../constants/colors";
 
 export default function Onboarding(){
  return(
-    <View>
-
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome to my App</Text>
     </View>
  );
 }

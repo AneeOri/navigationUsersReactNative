@@ -4,6 +4,7 @@ import Settings from "../screens/Settings";
 import { Text, View } from "react-native";
 import { Colors } from "../constants/colors";
 import MyButtonTab from "./MyButtonTab";
+import Onboarding from "../screens/Onboarding";
 
 const HomeStack = createStackNavigator();
 
@@ -21,12 +22,13 @@ export default function MyStack(){
     /** Button Tab inside the stack */
     return(
        <HomeStack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Onboarding"
         screenOptions={myConfig}
        >
         <HomeStack.Screen name='Root' component={MyButtonTab}/> 
         <HomeStack.Group screenOptions={{headerShown:true}}>
-          <HomeStack.Screen name='Settings' component={Settings}/>
+          <HomeStack.Screen name='Settings' component={Settings} options={{headerBackTitle: 'Home'}}/>
+          <HomeStack.Screen name='Onboarding' component={Onboarding} options={{headerBackTitle: false}}/>
         </HomeStack.Group>
        </HomeStack.Navigator>
     );

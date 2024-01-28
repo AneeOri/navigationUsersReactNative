@@ -6,6 +6,27 @@ export default function Onboarding(){
  return(
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to my App</Text>
+      <View style={styles.featureContainer}>
+        <Image style={styles.icon} source={require('../../assets/arrows.png')}/>
+        <View style={{flex:1}}>
+           <Text style={styles.subtitle}>Manage Daily tasks</Text>
+           <Text style={styles.subHeadLine}>This is a simple app that helps you to increase your productivity.</Text>
+        </View>
+      </View>
+      <View style={styles.featureContainer}>
+        <Image style={styles.icon} source={require('../../assets/bell.png')}/>
+        <View style={{flex:1}}>
+           <Text style={styles.subtitle}>Notifications</Text>
+           <Text style={styles.subHeadLine}>Please allow us to notify you when it's time to do your tasks.</Text>
+        </View>
+      </View>
+      <View style={styles.featureContainer}>
+        <Image style={styles.icon} source={require('../../assets/design.png')}/>
+        <View style={{flex:1}}>
+           <Text style={styles.subtitle}>Minimal Design</Text>
+           <Text style={styles.subHeadLine}>Enjoy a simple desing thet allows you to focus only on what you have to do.</Text>
+        </View>
+      </View>
     </View>
  );
 }

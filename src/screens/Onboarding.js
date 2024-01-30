@@ -1,9 +1,42 @@
-import { Text, View,Image, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
+import { Text, View,Image, StyleSheet, TouchableOpacity, Dimensions, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/colors";
 import MyButton from "../components/MyButton";
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
 
 export default function Onboarding(){
+
+  async function registerForPushNotifications(){
+    let token;
+    if(Device.isDevice){
+      const {status: existingStatus} = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if(existingStatus !== 'granted'){
+        const {status} = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if(finalStatus !== 'granted'){
+        alert('fail to get token');
+        return;
+      }
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log('this is the token,', token);
+    }else{
+      return;
+    }
+
+    if(Platform.OS === 'android'){
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0,250,250,250],
+        lightColor: '#FF231F7C',
+      })
+    }
+    return token;
+  }
+
  return(
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to my App</Text>

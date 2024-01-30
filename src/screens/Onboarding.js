@@ -1,6 +1,7 @@
 import { Text, View,Image, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/colors";
+import MyButton from "../components/MyButton";
 
 export default function Onboarding(){
  return(
@@ -27,6 +28,7 @@ export default function Onboarding(){
            <Text style={styles.subHeadLine}>Enjoy a simple desing thet allows you to focus only on what you have to do.</Text>
         </View>
       </View>
+      <MyButton title={'Continue'}/>
     </View>
  );
 }

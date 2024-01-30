@@ -22,7 +22,7 @@ export default function MyStack(){
     /** Button Tab inside the stack */
     return(
        <HomeStack.Navigator
-        initialRouteName="Onboarding"
+        initialRouteName="Home"
         screenOptions={myConfig}
        >
         <HomeStack.Screen name='Root' component={MyButtonTab}/> 

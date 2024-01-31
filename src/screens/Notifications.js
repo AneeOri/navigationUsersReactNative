@@ -27,11 +27,24 @@ export default function Notifications(){
     data:{}
    })
 
+   async function sendPushNotification(){
+    await fetch ('https://exp.host/--/api/v2/push/send', {
+        method:'POST',
+        headers:{
+            Accept: 'application/json',
+            'Accept-encoding': 'gzip, deflate',
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify(state),
+      });
+   }
+
     return(
      <View style={globalStyles.screenContainer}>
       <Text style={globalStyles.title}>Notifications</Text>
-      <MyInput label={'Push Token'}/>
-      <MyButton title={'Send'}/>
+      <MyInput label={'Title'} onChangeText={(text) => dispatch({type: 'SET_TITLE', title:text})}/>
+      <MyInput label={'Body'} onChangeText={(text) => dispatch({type:'SET_BODY' ,body: text})}/>
+      <MyButton title={'Send'} onPress={sendPushNotification}/>
      </View>
     );
 }

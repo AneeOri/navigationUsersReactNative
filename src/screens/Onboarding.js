@@ -4,8 +4,18 @@ import { Colors } from "../constants/colors";
 import MyButton from "../components/MyButton";
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Onboarding(){
+  const navigator = useNavigation();
+
+  function handlePress(){
+    registerForPushNotifications()
+     .then(async token => {
+      await AsyncStorage.setItem('@pushToken', token);
+      navigator.navigate('Home');
+     })
+  }
 
   async function registerForPushNotifications(){
     let token;
@@ -61,7 +71,7 @@ export default function Onboarding(){
            <Text style={styles.subHeadLine}>Enjoy a simple desing thet allows you to focus only on what you have to do.</Text>
         </View>
       </View>
-      <MyButton title={'Continue'}/>
+      <MyButton title={'Continue'} onPress={handlePress}/>
     </View>
  );
 }

@@ -39,6 +39,25 @@ export default function Notifications(){
       });
    }
 
+   async function sendMultiplePushNotification(){
+    await fetch ('https://exp.host/--/api/v2/push/send', {
+        method:'POST',
+        headers:{
+            host:'exp.host',
+            Accept: 'application/json',
+            'accept-encoding': 'gzip, deflate',
+            'content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            to:[
+                'ExponentPushToken[...]'
+            ],
+            title: 'nuevo contenido',
+            body:'descuentos en mercancia',
+        }),
+      });
+   }
+
     return(
      <View style={globalStyles.screenContainer}>
       <Text style={globalStyles.title}>Notifications</Text>

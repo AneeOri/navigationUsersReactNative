@@ -52,6 +52,16 @@ export default function Home(){
       navigation.navigate('Onboarding');
     }
    }
+   useEffect(() => { //when component is mounted subscription is generated 
+    const subscription = Notification.addNotificationResponseReceivedListener(
+        (response) => {
+            console.log('Notification Response Received: ',
+            response);
+        }
+     )
+    return  () => subscription.remove();
+    //when unmounted cancel subscription to avoid errors with unclean up function
+   },[])
 
     return(
      <View style={globalStyles.screenContainer}>

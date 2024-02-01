@@ -13,6 +13,7 @@ export default function Home(){
    const navigation = useNavigation();
    const isDrawerOpen = useDrawerStatus();
    const [date, setDate] = useState(new Date());
+   const [notificationType, setNotificationType] = useState('default');
  
    /** navigation.openDrawer
     *  navigation.closeDrawer
@@ -55,8 +56,8 @@ export default function Home(){
    useEffect(() => { //when component is mounted subscription is generated 
     const subscription = Notification.addNotificationResponseReceivedListener(
         (response) => {
-            console.log('Notification Response Received: ',
-            response);
+            console.log('Notification Response Received: ', response);
+            setNotificationType(response.notification.request.content.title);
         }
      )
     return  () => subscription.remove();
@@ -65,6 +66,7 @@ export default function Home(){
 
     return(
      <View style={globalStyles.screenContainer}>
+      <Text style={globalStyles.title}>{setNotificationType}</Text>
       <DateTimePicker
         value={date}
         style={{width: '25%'}}

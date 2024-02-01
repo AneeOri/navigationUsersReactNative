@@ -17,7 +17,7 @@ export default function RootNavigator() {  /**Render the root navigator in App *
     getValue();
    },[]);
 
-   useEffect(() => { //when component is mounted subscription is generated 
+   /*useEffect(() => { //when component is mounted subscription is generated 
     const subscription = Notifications.addNotificationResponseReceivedListener(
         (response) => {
             console.log('Notification Response Received: ',
@@ -26,7 +26,7 @@ export default function RootNavigator() {  /**Render the root navigator in App *
      )
     return  () => subscription.remove();
     //when unmounted cancel subscription to avoid errors with unclean up function
-   },[])
+   },[])*/
 
    async function getValue() {
     try {

@@ -31,7 +31,22 @@ export default function Wrapper(){
     const subscription = Notifications.addNotificationResponseReceivedListener(
         (response) => {
             console.log('Notification Response Received: ', response);
-            navigation.navigate('Settings')
+            const toRoute = response.notification.request.content.data.route;
+            const data = response.notification.request.content.data;
+            switch(toRoute){
+                case 'Settings' :{ 
+                    navigation.navigate('Settings');
+                    break;
+                }
+                case 'Navigation' :{ 
+                    navigation.navigate('navigation');
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+            
         }
      )
     return  () => subscription.remove();

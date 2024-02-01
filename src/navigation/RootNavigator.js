@@ -8,25 +8,35 @@ import { useEffect } from "react";
 import Splash from "../screens/Splash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
+import { useNavigation } from "@react-navigation/native";
 
-export default function RootNavigator() {  /**Render the root navigator in App */
+export default function Wrapper(){
+    return(
+        <NavigationContainer>
+            <RootNavigator/>
+        </NavigationContainer>
+    );
+}
+
+ function RootNavigator() {  /**Render the root navigator in App */
    const {userToken, isLoading} = useSelector(state => state.auth);
    const dispatch = useDispatch();
+   const navigation = useNavigation();
 
    useEffect(() => {
     getValue();
    },[]);
 
-   /*useEffect(() => { //when component is mounted subscription is generated 
+   useEffect(() => { 
     const subscription = Notifications.addNotificationResponseReceivedListener(
         (response) => {
-            console.log('Notification Response Received: ',
-            response);
+            console.log('Notification Response Received: ', response);
+            navigation.navigate('Settings')
         }
      )
     return  () => subscription.remove();
     //when unmounted cancel subscription to avoid errors with unclean up function
-   },[])*/
+   },[])
 
    async function getValue() {
     try {
@@ -44,8 +54,6 @@ export default function RootNavigator() {  /**Render the root navigator in App *
 }
     if(isLoading) return <Splash/>;
     return(
-        <NavigationContainer>
-           {userToken ? <MyDrawer/> : <AuthStack/>}
-        </NavigationContainer>
+        <> {userToken ? <MyDrawer/> : <AuthStack/>}</>
     );
 } 

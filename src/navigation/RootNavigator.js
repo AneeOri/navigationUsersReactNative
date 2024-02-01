@@ -35,11 +35,11 @@ export default function Wrapper(){
             const data = response.notification.request.content.data;
             switch(toRoute){
                 case 'Settings' :{ 
-                    navigation.navigate('Settings');
+                    navigation.navigate('Settings', data);
                     break;
                 }
                 case 'Navigation' :{ 
-                    navigation.navigate('navigation');
+                    navigation.navigate('navigation', data);
                     break;
                 }
                 default: {

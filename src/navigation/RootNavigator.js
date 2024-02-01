@@ -7,6 +7,7 @@ import { restoreToken } from "../features/auth/auth";
 import { useEffect } from "react";
 import Splash from "../screens/Splash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Notifications from 'expo-notifications';
 
 export default function RootNavigator() {  /**Render the root navigator in App */
    const {userToken, isLoading} = useSelector(state => state.auth);
@@ -15,6 +16,17 @@ export default function RootNavigator() {  /**Render the root navigator in App *
    useEffect(() => {
     getValue();
    },[]);
+
+   useEffect(() => { //when component is mounted subscription is generated 
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+        (response) => {
+            console.log('Notification Response Received: ',
+            response);
+        }
+     )
+    return  () => subscription.remove();
+    //when unmounted cancel subscription to avoid errors with unclean up function
+   },[])
 
    async function getValue() {
     try {

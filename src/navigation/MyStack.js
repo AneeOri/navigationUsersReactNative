@@ -28,7 +28,6 @@ export default function MyStack(){
         <HomeStack.Screen name='Root' component={MyButtonTab}/> 
         <HomeStack.Group screenOptions={{headerShown:true}}>
           <HomeStack.Screen name='Settings' component={Settings} options={{headerBackTitle: 'Home'}}/>
-          <HomeStack.Screen name='Onboarding' component={Onboarding} options={{headerBackTitle: false}}/>
         </HomeStack.Group>
        </HomeStack.Navigator>
     );

@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import MyDrawer from "./MyDrawer";
-import AuthStack from "./authStack/AuthStack";
+import AuthStack from './AuthStack';
 import { useSelector, useDispatch } from "react-redux";
 import { restoreToken } from "../features/auth/auth";
 import { useEffect } from "react";
